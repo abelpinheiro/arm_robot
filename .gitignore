@@ -1,0 +1,56 @@
+# Build artifacts
+build/
+install/
+log/
+
+# Python specific
+*.pyc
+__pycache__/
+.pytest_cache/
+
+# C++ specific
+*.o
+*.so
+*.a
+*.lo
+*.la
+*.slo
+*.mod
+*.gcno
+*.gcov
+*.dSYM/
+
+# Eclipse/VSCode/IDE files
+.project
+.cproject
+.settings/
+.vscode/
+.history/
+*.launch
+*.target
+*.sublime-project
+*.sublime-workspace
+
+# ROS 2 specific
+# Generated messages, services, and actions
+# These are typically generated in the install/ share/ folders
+# but can also appear in source directories during development
+# Depending on your build system and setup, you might need to adjust these.
+# For example, if you are using ament_cmake_auto, these might be in build/
+# or install/ directories, which are already ignored.
+# However, if you have specific cases where generated files appear in source,
+# you might need to add more specific rules.
+# For example:
+# msg/
+# srv/
+# action/
+
+# Other common ignored files
+.DS_Store
+.directory
+*~
+*.bak
+*.swp
+*.orig
+*.rej
+# Any other temporary or user-specific files
