@@ -7,6 +7,12 @@ log/
 *.pyc
 __pycache__/
 .pytest_cache/
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+*.eggs/
+*.log
 
 # C++ specific
 *.o
@@ -54,3 +60,33 @@ __pycache__/
 *.orig
 *.rej
 # Any other temporary or user-specific files
+
+# Arquivos do CMake (caso existam pacotes CMake)
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Ambientes virtuais (se usar)
+venv/
+.env/
+.env.bak/
+.python-version
+
+# VSCode e outros editores
+.vscode/
+.idea/
+*.swp
+
+# Arquivos temporários do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de testes
+htmlcov/
+.tox/
+.nox/
+.coverage
+coverage.xml
+*.cover
+.pytest_cache/
