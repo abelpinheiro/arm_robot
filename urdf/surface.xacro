@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:property name="TABLE_LENGTH" value="1.0" />
+    <xacro:property name="TABLE_WIDTH" value="1.5" />
+    <xacro:property name="TABLE_HEIGHT" value="0.02" />
+    <xacro:property name="TABLE_COLOR" value="0.8 0.8 0.8 1.0" />
+
+    <xacro:macro name="add_surface" params="name:=surface">
+        <link name="${name}_link">
+            <visual>
+                <origin xyz="0 0 ${-TABLE_HEIGHT/2}" rpy="0 0 0" />
+                <geometry>
+                    <box size="${TABLE_LENGTH} ${TABLE_WIDTH} ${TABLE_HEIGHT}" />
+                </geometry>
+                <material name="surface_material">
+                    <color rgba="${TABLE_COLOR}" />
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 ${-TABLE_HEIGHT/2}" rpy="0 0 0" />
+                <geometry>
+                    <box size="${TABLE_LENGTH} ${TABLE_WIDTH} ${TABLE_HEIGHT}" />
+                </geometry>
+            </collision>
+            <inertial>
+                <mass value="1.0" />
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <inertia ixx="1.0" iyy="1.0" izz="1.0" 
+                        ixy="0.0" ixz="0.0" iyz="0.0" />
+            </inertial>
+        </link>
+
+        <joint name="${name}_joint" type="fixed">
+            <origin xyz="0.8 0 0" rpy="0 0 0" />
+            <parent link="world" />
+            <child link="${name}_link" />
+        </joint>
+    </xacro:macro>
+
+</robot>

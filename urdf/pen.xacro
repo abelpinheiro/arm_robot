@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+    <xacro:property name="PEN_LENGTH" value="0.20" />
+    <xacro:property name="PEN_RADIUS" value="0.005" />
+    <xacro:property name="PEN_MASS" value="0.1" />
+    <xacro:property name="PEN_COLOR" value="0.1 0.1 0.1 1.0" />
+
+    <xacro:macro name="add_pen" params="parent_link name">
+        <link name="${name}_link">
+            <visual>
+                <origin xyz="0 0 ${PEN_LENGTH/2}" rpy="0 0 0" />
+                <geometry>
+                    <cylinder length="${PEN_LENGTH}" radius="${PEN_RADIUS}" />
+                </geometry>
+                <material name="pen_material">
+                    <color rgba="${PEN_COLOR}" />
+
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 ${PEN_LENGTH/2}" rpy="0 0 0" />
+                <geometry>
+                    <cylinder length="${PEN_LENGTH}" radius="${PEN_RADIUS}" />
+                </geometry>
+            </collision>
+            <inertial>
+                <mass value="${PEN_MASS}" />
+                <origin xyz="0 0 ${PEN_LENGTH/2}" rpy="0 0 0"/>
+                <inertia ixx="${(PEN_MASS/12) * (3*PEN_RADIUS*PEN_RADIUS + PEN_LENGTH*PEN_LENGTH)}"
+                    iyy="${(PEN_MASS/12) * (3*PEN_RADIUS*PEN_RADIUS + PEN_LENGTH*PEN_LENGTH)}"
+                    izz="${(PEN_MASS/2) * PEN_RADIUS*PEN_RADIUS}"
+                    ixy="0.0" ixz="0.0" iyz="0.0" />
+            </inertial>
+        </link>
+
+        <joint name="${parent_link}_${name}_joint" type="fixed">
+            <origin xyz="0 0 0.05" rpy="${pi/2} 0 0" />
+            <parent link="${parent_link}" />
+            <child link="${name}_link" />
+        </joint>
+    </xacro:macro>
+</robot>
