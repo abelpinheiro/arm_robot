@@ -29,13 +29,18 @@ def generate_launch_description():
         name='joint_state_publisher_gui',
         output='screen'
     )
+
+    rviz_config_file = PathJoinSubstitution([
+        pkg_share, 'rviz', 'default.rviz'
+    ])
     
     # RViz2 node
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',
         name='rviz2',
-        output='screen'
+        output='screen',
+        arguments=['-d', rviz_config_file]
     )
 
     return LaunchDescription([
